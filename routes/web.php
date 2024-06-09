@@ -27,14 +27,18 @@ Route::middleware('auth')->group(function () {
     // event management route
     Route::get('/event', [EventManagementController::class, 'index'])
         ->name('event.index');
-    Route::post('/event', [EventManagementController::class, 'store'])
+    Route::get('/event/create', [EventManagementController::class, 'create'])
         ->name('event.create');
+    Route::post('/event/create', [EventManagementController::class, 'store'])
+        ->name('event.store');
     Route::get('/event/{event}', [EventManagementController::class, 'show'])
+        ->name('event.show');
+    Route::get('/event/{event}/edit', [EventManagementController::class, 'edit'])
         ->name('event.edit');
-    Route::put('/event/{event}', [EventManagementController::class, 'update'])
+    Route::put('/event/{event}/update', [EventManagementController::class, 'update'])
         ->name('event.update');
-    Route::delete('/event/{event}', [EventManagementController::class, 'destroy'])
-        ->name('event.destroy');
+    Route::delete('/event/{event}/delete', [EventManagementController::class, 'delete'])
+        ->name('event.delete');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

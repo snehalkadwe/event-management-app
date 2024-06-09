@@ -8,13 +8,27 @@ use Inertia\Inertia;
 
 class EventManagementController extends Controller
 {
+    /**
+     * Show the all the event details
+     */
     public function index()
     {
-        return Inertia::render('EventManagement', [
+        return Inertia::render('EventManagement/Index', [
             'events' => Event::get()
         ]);
     }
 
+    /**
+     * Show the form for creating a new event.
+     */
+    public function create()
+    {
+        return Inertia::render('EventManagement/Create');
+    }
+
+    /**
+     * Used to store event
+     */
     public function store(Request $request)
     {
         $params = $request->all();
@@ -25,17 +39,38 @@ class EventManagementController extends Controller
             'location' => $params['location'],
         ];
         Event::create($data);
-        return redirect()->back();
+        return redirect()->route('event.index');
     }
 
-    public function show(Request $request, Event $event)
+    /**
+     * Show the event details
+     */
+    public function show(Event $event)
     {
-        $event = Event::where('id', $event->id);
-
-        return Inertia::render('EventManagement', [
-            'event' => $event
-        ]);
+        return Inertia::render(
+            'EventManagement/View',
+            [
+                'event' => $event
+            ]
+        );
     }
+
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(Event $event)
+    {
+        return Inertia::render(
+            'EventManagement/Edit',
+            [
+                'event' => $event
+            ]
+        );
+    }
+
+    /**
+     * Update the event
+     */
     public function update(Request $request, Event $event)
     {
         $params = $request->all();
@@ -46,9 +81,13 @@ class EventManagementController extends Controller
             'location' => $params['location'],
         ];
         $event->update($data);
-        return redirect()->back();
+        return redirect()->route('event.index');
     }
-    public function destroy(Request $request, Event $event)
+
+    /**
+     * Delete event
+     */
+    public function delete(Event $event)
     {
         $event->delete();
         return redirect()->back();
