@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\EventRequest;
 use App\Models\Event;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -29,7 +30,7 @@ class EventManagementController extends Controller
     /**
      * Used to store event
      */
-    public function store(Request $request)
+    public function store(EventRequest $request)
     {
         $params = $request->all();
         $data = [
