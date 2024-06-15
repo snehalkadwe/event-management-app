@@ -21,7 +21,7 @@
     "env": {
         "APP_ENV": "production",
         "APP_DEBUG": "true",
-        "APP_URL": "https://event-management-gp7qrc3vm-snehalkadwes-projects.vercel.app",
+        "APP_URL": "https://event-management-app-tau.vercel.app",
         "APP_KEY": "base64:88B/ukMXe2Zq541e56QIUH5H8jeuDH6arueOk1kEIRg=",
 
         "APP_CONFIG_CACHE": "/tmp/config.php",
